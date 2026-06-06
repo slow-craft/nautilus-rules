@@ -98,20 +98,20 @@ jobs:
 
       - name: Remove redundant domains
         run: |
-          chmod +x ./resouces/*.py
-          python ./resouces/findRedundantDomain.py ./direct-list-with-redundant ./direct-list-deleted-unsort
-          python ./resouces/findRedundantDomain.py ./proxy-list-with-redundant ./proxy-list-deleted-unsort
+          chmod +x ./scripts/*.py
+          python ./scripts/findRedundantDomain.py ./direct-list-with-redundant ./direct-list-deleted-unsort
+          python ./scripts/findRedundantDomain.py ./proxy-list-with-redundant ./proxy-list-deleted-unsort
           [ ! -f "direct-list-deleted-unsort" ] && touch direct-list-deleted-unsort
           [ ! -f "proxy-list-deleted-unsort" ] && touch proxy-list-deleted-unsort
           sort ./direct-list-deleted-unsort > ./direct-list-deleted-sort
           sort ./proxy-list-deleted-unsort > ./proxy-list-deleted-sort
-          python ./resouces/removeFrom.py -remove ./direct-list-deleted-sort -from ./direct-list-with-redundant -out direct-list-without-redundant
-          python ./resouces/removeFrom.py -remove ./proxy-list-deleted-sort -from ./proxy-list-with-redundant -out proxy-list-without-redundant
+          python ./scripts/removeFrom.py -remove ./direct-list-deleted-sort -from ./direct-list-with-redundant -out direct-list-without-redundant
+          python ./scripts/removeFrom.py -remove ./proxy-list-deleted-sort -from ./proxy-list-with-redundant -out proxy-list-without-redundant
 
       - name: Remove domains from "need-to-remove" lists in "hidden" branch
         run: |
-          python ./resouces/removeFrom.py -remove ./resouces/direct-need-to-remove.txt -from ./direct-list-without-redundant -out ./temp-cn.txt
-          python ./resouces/removeFrom.py -remove ./resouces/proxy-need-to-remove.txt -from ./proxy-list-without-redundant -out ./temp-geolocation-\!cn.txt
+          python ./scripts/removeFrom.py -remove ./resouces/direct-need-to-remove.txt -from ./direct-list-without-redundant -out ./temp-cn.txt
+          python ./scripts/removeFrom.py -remove ./resouces/proxy-need-to-remove.txt -from ./proxy-list-without-redundant -out ./temp-geolocation-\!cn.txt
 
       - name: Remove domains end with ".cn" in "temp-geolocation-!cn.txt" and write lists to data directory
         run: |
@@ -272,7 +272,7 @@ jobs:
       #     NO_SKIP: true
       #   run: |
       #     mkdir -p ./sing-rule/bm7
-      #     cp ./resouces/bm7.sh ./sing-rule/bm7/
+      #     cp ./scripts/bm7.sh ./sing-rule/bm7/
       #     cd ./sing-rule/bm7
       #     wget https://github.com/SagerNet/sing-box/releases/download/v1.8.0-alpha.1/sing-box-1.8.0-alpha.1-linux-amd64.tar.gz -O sing-box.tar.gz && tar zxvf sing-box.tar.gz && mv sing-box-1.8.0-alpha.1-linux-amd64/sing-box ./ && rm -r sing-box-1.8.0-alpha.1-linux-amd64
       #     ls
