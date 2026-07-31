@@ -285,6 +285,8 @@ jobs:
           sudo apt-get install -y p7zip-full
           cd meta-rule
           7z a ../BundleMRS.7z -mx=1 -r *.mrs
+          cd ..
+          ./scripts/build-android-bundle.sh ./meta-rule .
 
       - name: Move and zip files
         run: |
@@ -303,6 +305,9 @@ jobs:
           install -Dp ./geoip.metadb ./publish/
           install -Dp ./geoip-lite.metadb ./publish/
           install -Dp ./BundleMRS.7z ./publish/
+          install -Dp ./BundleMRS-android.7z ./publish/
+          install -Dp ./BundleMRS-android.7z.sha256sum ./publish/
+          install -Dp ./BundleMRS-android.manifest ./publish/
           cd ./publish || exit 1
           sha256sum country.mmdb > country.mmdb.sha256sum
           sha256sum country-lite.mmdb > country-lite.mmdb.sha256sum

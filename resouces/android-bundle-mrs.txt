@@ -1,0 +1,12 @@
+geo/geosite/icloud.mrs
+geo/geosite/apple.mrs
+geo/geosite/google.mrs
+geo/geosite/geolocation-!cn.mrs
+geo/geosite/cn.mrs
+geo/geosite/private.mrs
+geo/geosite/gfw.mrs
+geo/geosite/greatfire.mrs
+geo/geosite/tld-!cn.mrs
+geo/geoip/telegram.mrs
+geo/geoip/cn.mrs
+geo/geoip/private.mrs
